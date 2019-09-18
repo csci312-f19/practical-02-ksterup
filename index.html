@@ -3,16 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>Color Picker</title>
-
     <script type="text/javascript" src="color-picker.js"></script>
-
     <style>
       .color-label {
         display: inline-block;
         width: 50px;
         text-align: left;
       }
-
       .color-swatch{
         width:100px;
         height:100px;
@@ -21,32 +18,12 @@
     </style>
   </head>
   <body>
-    <div class="color-picker">
-      <div class="color-swatch" ></div>
-    </div>
-
     <script type="text/javascript">
-      const colorBox = document.querySelector('.color-swatch');
-
-      const picker = document.querySelector('.color-picker');
       let currentColor = {'red':255, 'green':0, 'blue': 0};
-
-      const update = function(newColor) {
-        currentColor = { ...currentColor, ...newColor }
-        const { red, green, blue } = currentColor;
-
-        colorBox.style.background = `rgb(${red}, ${green}, ${blue})`;
-      };
-
-      Object.keys(currentColor).forEach((color) =>{
-        // initialize slider in here
-        let slider = createSlider(color, currentColor[color], update);
-        picker.appendChild(slider);
+      const picker = createColorPicker(currentColor, (value) => {
+        console.log(value);
       });
-
-      // Set oninput callback for each slider
-      update();
+      document.body.appendChild(picker);
     </script>
-
   </body>
 </html>

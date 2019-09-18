@@ -69,16 +69,16 @@ const createColorPicker = function createColorPicker(initialValue, callback) { /
   // - merge the change into the the current color
   // - set the background color of the swatch
   // - call the callback with the current color
-  const update = function(newColor) {
-    currentColor = { ...currentColor, ...newColor }
+  const update = (newColor) => {
+    currentColor = { ...currentColor, ...newColor };
     const { red, green, blue } = currentColor;
     colorBox.style.background = `rgb(${red}, ${green}, ${blue})`;
     callback(currentColor);
   };
   // add sliders for each color channel
-  Object.keys(currentColor).forEach((color) =>{
+  Object.keys(currentColor).forEach((color) => {
     // initialize slider in here
-    let slider = createSlider(color, currentColor[color], update);
+    const slider = createSlider(color, currentColor[color], update);
     picker.appendChild(slider);
   });
   // call update() to initialize to the correct value
